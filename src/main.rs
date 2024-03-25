@@ -17,5 +17,5 @@ async fn main() {
 }
 
 async fn index() -> Json<Value> {
-    Json(json!({"status": "ok", "version": "2"}))
+    Json(json!({"status": "ok", "version": "0.0.4"}))
 }
