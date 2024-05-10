@@ -6,7 +6,9 @@ use serde_json::{json, Value};
 #[tokio::main]
 async fn main() {
     let app = Router::new().route("/", get(index));
-    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
+    let port = std::env::var("PORT").unwrap_or_else(|_| "3000".to_string());
+    let port: u16 = port.parse().expect("Parse port");
+    let addr = SocketAddr::from(([0, 0, 0, 0], port));
 
     println!("Dummy server running on port {}", addr.port());
 
@@ -17,5 +19,5 @@ async fn main() {
 }
 
 async fn index() -> Json<Value> {
-    Json(json!({"status": "ok", "version": "0.0.5"}))
+    Json(json!({"status": "ok", "version": "0.0.6"}))
 }
